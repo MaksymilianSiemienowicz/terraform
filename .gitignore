@@ -1,3 +1,4 @@
+credentials.auto.tfvars
 vars.tf
 credentails.auto.tfvars
 .terraform.lock.hcl
