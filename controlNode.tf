@@ -1,9 +1,8 @@
-resource "proxmox_vm_qemu" "VPN" {
-
+resource "proxmox_vm_qemu" "control-node" {
   count = 1 
 
-  name        = "vpn"
-  vmid        = "102"
+  name        = "control-node"
+  vmid        = "103"
   target_node = "proxmox"
   agent       = 0
 
@@ -26,7 +25,7 @@ resource "proxmox_vm_qemu" "VPN" {
     scsi {
       scsi0 {
         disk {
-          size      = "10G"
+          size      = "50G"
           storage   = "HDD3"
           iothread  = false
           replicate = false
@@ -44,7 +43,7 @@ resource "proxmox_vm_qemu" "VPN" {
   ciuser     = var.username
   cipassword = var.userPassword
   nameserver = "192.168.0.4"
-  ipconfig0  = "ip=192.168.0.5/24,gw=192.168.0.1"
+  ipconfig0  = "ip=192.168.0.11/24,gw=192.168.0.1"
   sshkeys = var.sshKey
 
   onboot = true
@@ -53,5 +52,4 @@ resource "proxmox_vm_qemu" "VPN" {
     bridge = "vmbr0"
 
   }
-
 }
